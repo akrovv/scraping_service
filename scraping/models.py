@@ -55,3 +55,11 @@ class Vacancy(models.Model):
 
 class Error(models.Model):
     timestamp = models.DateField(auto_now_add=True)
+    data = models.JSONField()
+
+    def __str__(self):
+        return f"Дата ошибки: {self.timestamp}"
+
+    class Meta:
+        verbose_name = 'Ошибки'
+        verbose_name_plural = "Ошибки"
