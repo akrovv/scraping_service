@@ -45,7 +45,6 @@ class MyUser(AbstractBaseUser):
                              null=True, blank=True)
     send_email = models.BooleanField(default=True)
 
-
     objects = MyUserManager()
 
     USERNAME_FIELD = "email"

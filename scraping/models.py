@@ -73,7 +73,7 @@ class Url(models.Model):
     url_data = models.JSONField(default=default_url())
 
     def __str__(self):
-        return f"Url: {self.city} {self.language}"
+        return f"Url: {self.city} - {self.language}"
 
     class Meta:
         unique_together = ("city", "language") # Два уникальных параметра (случайно не добавятся другие данные)

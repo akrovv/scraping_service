@@ -9,8 +9,11 @@ import django
 django.setup() # Для запуска django
 
 from django.db import DatabaseError
+from django.contrib.auth import get_user_model
 from scraping.parsers import *
 from scraping.models import Vacancy, City, Language, Error
+
+User = get_user_model() # Получение пользователя
 
 parsers = (
     (work, 'https://www.work.ua/ru/jobs-kyiv-python/'),
@@ -19,6 +22,12 @@ parsers = (
     (rabota, 'https://rabota.ua/zapros/python/%d0%ba%d0%b8%d0%b5%d0%b2')
 )
 
+def get_settings():
+    qs = User.objects.filter(send_email=True).values()
+    settings_lst = set((q['city_id'], q['language_id']) for q in qs)
+    return settings_lst
+
+q = get_settings()
 city = City.objects.filter(slug='kiev').first()
 language = Language.objects.filter(slug='python').first()
 
