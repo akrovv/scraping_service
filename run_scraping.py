@@ -29,7 +29,6 @@ def get_settings():
     settings_lst = set((q['city_id'], q['language_id']) for q in qs)
     return settings_lst
 
-
 def get_urls(_settings):
     qs = Url.objects.all().values()
     url_dct = {(q['city_id'], q['language_id']): q['url_data'] for q in qs}
